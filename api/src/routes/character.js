@@ -3,11 +3,12 @@ const router = express.Router();
 const {Character, Episode} = require("../db");
 const {getAllInfo} = require('../controllers/character')
 
-router.get('/',async(req,res) =>{
+router.get('/', async( req, res, next)=>{
+
   const allCharacters = await getAllInfo()
-  allCharacters?
+  allCharacters? 
   res.status(200).send(allCharacters):
-  res.status(404).send('Error en get /character')
-})
+  res.status(400).send('Error get /character')
+});
 
 module.exports = router
