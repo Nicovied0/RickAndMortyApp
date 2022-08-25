@@ -6,6 +6,6 @@ const router = Router();
 
 // Configurar los routers
 router.use('/character', characterRoute)
-router.use('/episode',episodeRoute)
+router.use('/episode', episodeRoute)
 
 module.exports = router;
