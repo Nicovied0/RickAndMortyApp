@@ -18,14 +18,31 @@ const getApiCharacters = async () => {
           origin: e.origin.name,
           image: e.image,
           characterApi: true,
-        })
-      })
+        });
+      });
       apiUrl = apiData.data.info.next
     }
     return allCharacter
   } catch {
     console.log('Error get api')
   }
+}
+
+const getDbCharacter = async () => {
+  return await Character.findAll({
+    include: {
+      model: Episode,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      }
+    }
+  })
+}
 
 
+
+
+module.exports = {
+  getApiCharacters,
 }
