@@ -2,7 +2,7 @@ const axios = require('axios')
 const { Character, Episode } = require('../db')
 
 
-const getApiCharacters = async () => {
+const getApiCharacter = async () => {
   try {
     const allCharacter = []
     let apiUrl = 'https://rickandmortyapi.com/api/character'
@@ -37,12 +37,25 @@ const getDbCharacter = async () => {
         attributes: [],
       }
     }
-  })
+  });
+}
+
+const getAllInfo = async() => {
+  try{
+    const dbInfo = await getDbCharacter();
+    const apiInfo = await getApiCharacters();
+
+    const InfoTotal = dbInfo?.concat(apiInfo)
+    return InfoTotal;
+  }catch{
+    console.log('Error al hacer el llamdo a all Info')
+  }
 }
 
 
 
-
 module.exports = {
-  getApiCharacters,
+  getApiCharacter,
+  getDbCharacter,
+  getAllInfo
 }
