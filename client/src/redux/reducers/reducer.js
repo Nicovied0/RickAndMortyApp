@@ -1,19 +1,24 @@
-import { GET_CHARACTER } from '../actions/actions'
+import { GET_CHARACTER,DETAILS } from '../actions/actions'
 
 const initialState = {
-   characters : []
+  characters: []
 };
 
 function rootReducer(state = initialState, action) {
-  switch(action.type){
+  switch (action.type) {
     case GET_CHARACTER:
       return {
         ...state,
-        characters:action.payload
+        characters: action.payload
       }
-      default:
-        return state
-  } 
+    case DETAILS:
+      return {
+        ...state,
+        details: action.payload
+      }
+    default:
+      return state
+  }
 }
 
 export default rootReducer;

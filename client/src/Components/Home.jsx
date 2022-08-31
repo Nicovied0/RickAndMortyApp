@@ -45,8 +45,8 @@ useEffect ( ()=>{
            return(
             <Fragment>
               
-            <Link to={'/home/' + e.id}>
-            
+            <Link to={'/details/' + e.id}>
+
              <Card
                name = {e.name}
                image = {e.image}
