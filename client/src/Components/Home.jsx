@@ -44,6 +44,7 @@ useEffect ( ()=>{
          allCharacters.map(e => {
            return(
             <Fragment>
+              
             <Link to={'/home/' + e.id}>
             
              <Card

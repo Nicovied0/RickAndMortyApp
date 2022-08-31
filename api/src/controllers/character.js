@@ -2,15 +2,15 @@ const axios = require('axios')
 const { Character, Episode } = require('../db')
 
 
-const getApiCharacter= async () =>{
+const getApiCharacter = async () => {
   try {
-    const allCharacters = [] 
+    const allCharacters = []
 
     let apiUrl = "https://rickandmortyapi.com/api/character"
-      for(let i = 0; i <= 1; i++){
-        let apiData = await axios.get(apiUrl)
-       
-    
+    for (let i = 0; i <= 1; i++) {
+      let apiData = await axios.get(apiUrl)
+
+
       apiData.data.results?.forEach((el) => {
         return allCharacters.push({
           id: el.id,
@@ -21,34 +21,35 @@ const getApiCharacter= async () =>{
           characterApi: true,
         });
       });
-     
-     apiUrl = apiData.data.info.next
+
+      apiUrl = apiData.data.info.next
     }
     return allCharacters
   } catch (error) {
-      console.log(error)
+    console.log(error)
   }
 }
-const getDbCharacter = async() =>{
+
+const getDbCharacter = async () => {
   return await Character.findAll({
-    include:{
+    include: {
       model: Episode,
       attributes: ["name"],
       through: {
-        attributes:[],
+        attributes: [],
       }
     }
-  })
+  });
 }
 
-const getAllInfo = async() => {
-  try{
+const getAllInfo = async () => {
+  try {
     const dbInfo = await getApiCharacter();
     const apiInfo = await getDbCharacter();
 
     const InfoTotal = dbInfo?.concat(apiInfo);
     return InfoTotal;
-  }catch{
+  } catch {
     console.log('Error al hacer el llamdo a all Info')
   }
 }
