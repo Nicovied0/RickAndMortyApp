@@ -1,33 +1,38 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/actions/actions";
-import { useParams } from 'react-router';
+import { useParams } from "react-router";
 
 function Details() {
-  const character = useSelector((i) => i.details);
-  const dispatch = useDispatch();
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const character = useSelector((state) => state.details);
+
 
   useEffect(() => {
     dispatch(getDetails(id));
-  }, [id, dispatch]);
+  }, [dispatch, id]);
 
+  console.log(id);
   return (
     <div className="detail">
       {character ? (
         <div>
-          <h2 className="nameC">{character.name}</h2>
-          <div className="allDetails">
-            <img
-              className="imgDetails"
-              src={character.image}
-              alt="Not found"
-            ></img>
-            <h3>status</h3>
-          </div>
+          <h1>{character?.name}</h1>
+          <img src={character?.image} alt={character?.name} />
+
+          <h2>Episodes:</h2>
+          <ul>
+            {character?.episodes.map((episode) => (
+              <li>
+                Episode {episode.id} : {episode.name}
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (
-        <div>Loading</div>
+        <h1>Loading...</h1>
       )}
     </div>
   );
