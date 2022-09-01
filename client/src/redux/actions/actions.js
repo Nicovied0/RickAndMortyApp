@@ -5,14 +5,15 @@ export const DETAILS = "DETAILS";
 
 export const getCharacters = () => {
   return async (dispatch) => {
-    const json = await axios.get("http://localhost:3001/character/")
+    const res = await axios.get("http://localhost:3001/character/")
     return dispatch({
       type: GET_CHARACTER,
-      payload: json.data
+      payload: res.data
     })
   }
 }
-export const getDetails = (id) =>{
+
+export function getDetails(id){
   return async function (dispatch) {
     const res = await axios.get(`http://localhost:3001/character/${id}`);
     return dispatch({

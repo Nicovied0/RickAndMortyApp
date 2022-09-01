@@ -1,7 +1,9 @@
-import { GET_CHARACTER,DETAILS } from '../actions/actions'
+import { GET_CHARACTER, DETAILS } from '../actions/actions'
+
 
 const initialState = {
-  characters: []
+  characters: [],
+  details: []
 };
 
 function rootReducer(state = initialState, action) {
