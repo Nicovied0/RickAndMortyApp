@@ -47,8 +47,6 @@ const Home = () => {
               <Card
                 name={e.name}
                 image={e.image}
-                species={e.species}
-                origin={e.origin}
                 key={e.id}
               />
             </Link>

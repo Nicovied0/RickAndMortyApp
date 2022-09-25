@@ -8,6 +8,7 @@ function Details(props) {
   const details = useSelector((i) => i.details);
   const dispatch = useDispatch();
   const { id } = props.match.params;
+  
 
   useEffect(() => {
     dispatch(getDetails(id));
@@ -16,7 +17,7 @@ function Details(props) {
 
   // console.log(details,'detalles')
   // console.log(loading,'cargando')
-
+  // 
   return (
     <div className="detail">
       {loading ? (
@@ -25,20 +26,10 @@ function Details(props) {
           <img src={details?.image} alt={details?.name} />
           <h2>{details?.name}</h2>
           <h2>Origin: {details?.origin}</h2>
-          <h2>species: {details?.species}</h2>
-          <h2>Episodes:</h2>
-          <h2>species: {details?.episode}</h2>
-          <ul>
-            {console.log(details)}
-            {/* {details?.episode.map(e => (
-            <li>
-              Episode: {e.id} : {e.name}
-            </li>
-          ))} */}
-          </ul>
+          <h2>species: {details?.species}</h2>  
         </div>
       ) : (
-        <div>cargando</div>
+        <img src={details?.image} alt={details?.name} />
       )}
     </div>
   );
