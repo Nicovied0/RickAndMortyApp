@@ -43,7 +43,7 @@ const Home = () => {
       allCharacters?.map((e) => {
         return (
           <div>
-            <Link to={"/details/" + e.id}>
+            <Link to={"/character/" + e.id}>
               <Card
                 name={e.name}
                 image={e.image}

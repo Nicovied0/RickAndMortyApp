@@ -1,23 +1,26 @@
-import { React, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/actions/actions";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const character = useSelector((state) => state.details);
-
-
   useEffect(() => {
     dispatch(getDetails(id));
   }, [dispatch, id]);
 
-  console.log(id);
-  return (
-    <div className="detail">
-      {character ? (
+  const character = useSelector((state) => state.character);
+
+  
+  if (!character) {
+   
+    return <h2>cargando</h2>;
+  } else {
+    console.log(character,'SEGUNDO')
+    return (
+      <div className="detail">
         <div>
           <h1>{character?.name}</h1>
           <img src={character?.image} alt={character?.name} />
@@ -31,11 +34,10 @@ function Details() {
             ))}
           </ul>
         </div>
-      ) : (
-        <h1>Loading...</h1>
-      )}
-    </div>
-  );
+      </div>
+    );
+    
+  }
 }
 
 export default Details;

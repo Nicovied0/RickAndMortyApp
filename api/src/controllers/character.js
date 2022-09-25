@@ -7,7 +7,7 @@ const getApiCharacter = async () => {
     const allCharacters = []
 
     let apiUrl = "https://rickandmortyapi.com/api/character"
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i < 2; i++) {
       let apiData = await axios.get(apiUrl)
 
 

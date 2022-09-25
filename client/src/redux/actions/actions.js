@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_CHARACTER = 'GET_CHARACTER';
-export const DETAILS = "DETAILS";
+export const GET_DETAILS = 'GET_DETAILS';
+// export const GET_CHARACTER_DETAIL = "GET_CHARACTER_DETAIL";
 
 
 export const getCharacters = () => {
@@ -13,13 +14,14 @@ export const getCharacters = () => {
   }
 }
 
-export function getDetails(id){
+export function getDetails(id) {
   return async function (dispatch) {
     const res = await axios.get(`http://localhost:3001/character/${id}`);
     return dispatch({
-      type: DETAILS,
+      type: GET_DETAILS,
       payload: res.data
     });
 
   };
 };
+

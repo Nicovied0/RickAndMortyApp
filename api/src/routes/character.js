@@ -27,7 +27,7 @@ router.get('/', async( req, res, next)=>{
 
 
 router.post("/", async (req, res, next) => {
-    const { name, species, origin, image, episodes } = req.body;
+    const { name, species, origin, image, episode } = req.body;
   
     const newCharacter = await Character.create({
       name,
@@ -39,7 +39,7 @@ router.post("/", async (req, res, next) => {
     /* newCharacter.addEpisode(episodes); */
   
     const episodeDb = await Episode.findAll({
-      where: { name: episodes }, // or episode?
+      where: { name: episode }, // or episode?
     });
     newCharacter.addEpisode(episodeDb);
   
