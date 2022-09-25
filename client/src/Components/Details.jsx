@@ -1,43 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/actions/actions";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
-function Details() {
-  const { id } = useParams();
+function Details(props) {
+  const [loading, setLoading] = useState(false);  
+  const details  = useSelector((i) => i.details );
   const dispatch = useDispatch();
+  const { id } =  props.match.params;
 
   useEffect(() => {
-    dispatch(getDetails(id));
+    dispatch(getDetails(id))
+    setLoading(true)
   }, [dispatch, id]);
 
-  const character = useSelector((state) => state.character);
+// console.log(details,'detalles')
+// console.log(loading,'cargando')
 
   
-  if (!character) {
-   
-    return <h2>cargando</h2>;
-  } else {
-    console.log(character,'SEGUNDO')
-    return (
-      <div className="detail">
+  return (
+    <div className="detail">
+      {loading?
         <div>
-          <h1>{character?.name}</h1>
-          <img src={character?.image} alt={character?.name} />
+        <h1>{details?.name}</h1>
+        <img src={details?.image} alt={details?.name} />
 
-          <h2>Episodes:</h2>
-          <ul>
-            {character?.episodes.map((episode) => (
-              <li>
-                Episode {episode.id} : {episode.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-    
-  }
+        <h2>Episodes:</h2>
+        <ul>
+          {console.log(details)}
+          {details?.episode.map(e => (
+            <li>
+              Episode: {e.id} : {e.name}
+            </li>
+          ))}
+        </ul>
+      </div>:
+      <div>cargando</div>
+      }
+      
+    </div>
+  );
 }
 
 export default Details;

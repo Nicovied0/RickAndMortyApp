@@ -18,6 +18,7 @@ const getApiCharacter = async () => {
           species: el.species,
           origin: el.origin.name,
           image: el.image,
+          episode: el.episode.map(i => i),
           characterApi: true,
         });
       });
