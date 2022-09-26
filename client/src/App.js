@@ -8,13 +8,10 @@ import Details from './Components/Details';
 function App() {
   return (
     <BrowserRouter>
-      
-        <Route exact path='/' component={Landing}></Route>
-        <Route exact path='/home' component={Home}></Route>
-        <Route exact path="/character/:id" component={Details}></Route>
-    
+      <Route exact path='/' component={Landing}></Route>
+      <Route exact path='/home' component={Home}></Route>
+      <Route exact path="/character/:id" component={Details}></Route>
     </BrowserRouter>
-
   )
 }
 
