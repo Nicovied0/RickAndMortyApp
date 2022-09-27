@@ -1,0 +1,13 @@
+.main_card {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 3rem;
+}
+.text_card{
+  font-size: 1.6rem;
+  font-family: monospace;
+  margin: 1rem 0;
+  
+}

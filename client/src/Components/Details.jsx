@@ -18,21 +18,27 @@ function Details(props) {
   // console.log(details,'detalles')
   // console.log(loading,'cargando')
   // 
-  return (
-    <div className="detail">
-      {loading ? (
-        <div>
-          <h1>{details?.name}</h1>
+  if(!details){
+    return <h1>Error</h1>
+  }else if(){
+    
+  }else {
+    return (
+      <div className="detail">
+        {loading ? (
+          <div>
+            <h1>{details?.name}</h1>
+            <img src={details?.image} alt={details?.name} />
+            <h2>{details?.name}</h2>
+            <h2>Origin: {details?.origin}</h2>
+            <h2>species: {details?.species}</h2>  
+          </div>
+        ) : (
           <img src={details?.image} alt={details?.name} />
-          <h2>{details?.name}</h2>
-          <h2>Origin: {details?.origin}</h2>
-          <h2>species: {details?.species}</h2>  
-        </div>
-      ) : (
-        <img src={details?.image} alt={details?.name} />
-      )}
-    </div>
-  );
+        )}
+      </div>
+    )
+  }
 }
 
 export default Details;
