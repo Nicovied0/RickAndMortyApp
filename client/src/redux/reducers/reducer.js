@@ -1,4 +1,4 @@
-import { GET_CHARACTER, GET_DETAILS } from '../actions/actions'
+import { GET_CHARACTER, GET_DETAILS,GET_BY_NAME } from '../actions/actions'
 
 
 const initialState = {
@@ -18,6 +18,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         details: action.payload
       }
+    case GET_BY_NAME:
+      return {
+        ...state,
+        characters: action.payload
+      };
    
     default:
       return state

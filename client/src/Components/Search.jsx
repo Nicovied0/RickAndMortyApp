@@ -1,26 +1,39 @@
-import React from "react"
-import style from "./Styles/Search.module.css"
-
+import React, { useState } from "react";
+import style from "./Styles/Search.module.css";
+import { getByName } from "../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 const Search = () => {
-  return (
+  const dispatch = useDispatch();
+  const [searchPj, setSearchPj] = useState("");
 
+  const handleInput = (e) => {
+    e.preventDefault();
+    setSearchPj(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getByName(searchPj));
+  };
+console.log(searchPj)
+  return (
     <div className={style.searchbar_container}>
       <input
         className={`${style.searchbar}`}
         type="text"
-        // onChange={handleInput}
+        onChange={handleInput}
         placeholder="Buscar..."
       />
       <button
         className={`${style.searchbar_button}`}
         type="submit"
-        // onClick={handleSubmit}
+        onClick={handleSubmit}
       >
         buscar
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Search
+export default Search;

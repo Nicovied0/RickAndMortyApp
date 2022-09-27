@@ -7,11 +7,19 @@ const router = express.Router()
 
 router.get('/', async( req, res)=>{
 
-    const allCharacters = await getAllInfo()
-    allCharacters? 
-    res.status(200).send(allCharacters):
-    res.status(400).send('no hay informacion')
-});
+  const {name} = req.query;
+  const allCharacters = await getAllInfo();
+  if(name) {
+      const byName = allCharacters.filter(i => i.name.toLowerCase().includes(name.toLocaleLowerCase()))
+      byName.length ? 
+      res.status(200).send(byName) :
+      res.status(404).send("No hay personaje con ese nombre");
+  } else {
+      res.status(200).send(allCharacters)
+  };
+}
+  );
+
 
 //get por id
 // router.get("/:id",async (req, res)=>{

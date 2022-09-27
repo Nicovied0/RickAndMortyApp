@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/actions/actions";
-// import { useParams } from "react-router-dom";
 import style from "./Styles/Detail.module.css"
 
 function Details(props) {

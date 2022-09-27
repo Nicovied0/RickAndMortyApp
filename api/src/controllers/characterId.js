@@ -1,5 +1,5 @@
 const {getAllInfo} = require("../controllers/character");
-const {Character, Episode} = require("../db")
+
 
 const characterID = async (id) => {
   const charactertotal = await getAllInfo();

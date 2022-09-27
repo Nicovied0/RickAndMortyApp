@@ -26,17 +26,11 @@ const Home = () => {
   } else if (allCharacters.length) {
     return (
       <div >
-        <Link to="/character">
-          <button>Crear Personaje</button>
-        </Link>
-        {/* <button onClick={e => handleClick(e)}>Recargar Home</button> */}
-
         <Nav />
-        <hi>Characters</hi>
         <div className={style.container}>
         {allCharacters?.map((e) => {
           return (
-            <div>
+            <div >
               <Link to={"/character/" + e.id} className={style.text_container}>
                 <Card name={e.name} image={e.image} key={e.id} />
               </Link>
