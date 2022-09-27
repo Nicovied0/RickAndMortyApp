@@ -37,7 +37,7 @@ const Home = () => {
         {allCharacters?.map((e) => {
           return (
             <div>
-              <Link to={"/character/" + e.id}>
+              <Link to={"/character/" + e.id} className={style.text_container}>
                 <Card name={e.name} image={e.image} key={e.id} />
               </Link>
             </div>

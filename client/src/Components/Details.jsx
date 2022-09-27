@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../redux/actions/actions";
 // import { useParams } from "react-router-dom";
+import style from "./Styles/Detail.module.css"
 
 function Details(props) {
   const [loading, setLoading] = useState(false);
@@ -20,10 +21,17 @@ function Details(props) {
   // 
   if(!details){
     return <h1>Error</h1>
-  }else if(){
-    
+  }else if(details.length === 0 || details.id != id ){
+    console.log(details)
+    return(
+      <div className={style.container}>
+        <span className={style.loader}></span>
+      </div>
+    )
   }else {
+    console.log(details)
     return (
+      
       <div className="detail">
         {loading ? (
           <div>

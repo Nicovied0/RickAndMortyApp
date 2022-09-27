@@ -5,7 +5,7 @@ const {Character, Episode} = require("../db")
 const router = express.Router()
 
 
-router.get('/', async( req, res, next)=>{
+router.get('/', async( req, res)=>{
 
     const allCharacters = await getAllInfo()
     allCharacters? 
