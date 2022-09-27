@@ -23,14 +23,14 @@ console.log(searchPj)
         className={`${style.searchbar}`}
         type="text"
         onChange={handleInput}
-        placeholder="Buscar..."
+        placeholder="Search..."
       />
       <button
         className={`${style.searchbar_button}`}
         type="submit"
         onClick={handleSubmit}
       >
-        buscar
+        Go
       </button>
     </div>
   );
