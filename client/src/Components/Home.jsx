@@ -20,6 +20,7 @@ const Home = () => {
   //   dispatch(getCharacters())
   // }
 
+  
   console.log(allCharacters.length);
   if (!allCharacters) {
     return <div className={style.container}>Error</div>;
@@ -27,6 +28,7 @@ const Home = () => {
     return (
       <div >
         <Nav />
+        {/* <ul style={{display:'flex'}}>{renderPages}</ul> */}
         <div className={style.container}>
         {allCharacters?.map((e) => {
           return (
