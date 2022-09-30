@@ -41,15 +41,15 @@ const Home = () => {
   for (let i = 1; i <= numOfPages; i++) {
     pages.push(i);
   }
- 
+
   //with the button e preventdefault  i go to the page of the pressed button
   function pagination(e, page) {
+    // console.log(page - 1, "soy page ");
     e.preventDefault();
     setCurrentPage(page);
   }
 
- 
-//reder to paginations
+  //reder to paginations
   const renderPages = pages.map((page) => (
     <li key={page}>
       <div>
@@ -58,10 +58,7 @@ const Home = () => {
     </li>
   ));
 
-  function pagination(e, page) {
-    e.preventDefault();
-    setCurrentPage(page);
-  }
+
 
   console.log(allCharacters.length);
   if (!allCharacters) {
@@ -70,18 +67,16 @@ const Home = () => {
     console.log(currentPageItems);
     return (
       <div>
+        <Nav />
         <div>
-          <button>after</button>
           <ul style={{ display: "flex", padding: "1rem", width: "3rem" }}>
             {renderPages}
           </ul>
-          <button>Next</button>
         </div>
-        <Nav />
         <div className={style.container}>
           {currentPageItems?.map((e) => {
             return (
-              <div>
+              <div key={e.id}>
                 <Link
                   to={"/character/" + e.id}
                   className={style.text_container}

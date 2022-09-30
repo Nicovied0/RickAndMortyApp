@@ -2,6 +2,7 @@ import axios from 'axios';
 export const GET_CHARACTER = 'GET_CHARACTER';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_BY_NAME = 'GET_BY_NAME';
+export const FILTER_ORIGIN = 'FILTER_ORIGIN';
 // export const GET_CHARACTER_DETAIL = "GET_CHARACTER_DETAIL";
 
 
@@ -43,4 +44,12 @@ export function getByName(payload) {
           console.log(error);
       }
   }
+};
+
+export function filterOrigin(payload){
+  //console.log(payload); // all , created , api
+  return {
+    type: FILTER_ORIGIN,
+    payload,
+  };
 };
