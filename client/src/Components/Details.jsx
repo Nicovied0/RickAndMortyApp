@@ -28,7 +28,7 @@ function Details(props) {
     );
   } else {
     console.log(details);
-    return (
+    return ( 
       <div className={style.container}>
         {loading ? (
           <div className={style.div_details}>

@@ -40,8 +40,8 @@
 
 .img_details{
   border-radius: 0 0 2rem 2rem  ;
-  width: 35rem;
-  max-width: 90%;
+ width: 20rem;
+  max-width: 100%;
 }
 /* loader */
 .loader {
