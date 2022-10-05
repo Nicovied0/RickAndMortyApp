@@ -1,4 +1,7 @@
-import { GET_CHARACTER, GET_DETAILS, GET_BY_NAME, FILTER_ORIGIN } from '../actions/actions'
+import {
+  GET_CHARACTER, GET_DETAILS, GET_BY_NAME, BYCREATED,
+  CLEAR_PAGE, ORDER
+} from '../actions/actions'
 
 
 const initialState = {
@@ -24,14 +27,45 @@ function rootReducer(state = initialState, action) {
         ...state,
         characters: action.payload
       }
-    case FILTER_ORIGIN:
-      const allCharacters = state.characters
-      const originFilterCharacters =  action.payload === "created"
-      ? allCharacters.filter((character) => character.created) //VIENE POR BASE DE DATOS
-      : allCharacters.filter((character) => !character.created); //VIENE DESDE LA API
+
+      case BYCREATED:
+        const createdFilter = action.payload === 'Created' ? state.characters.filter(i => i.createdInDb) : state.characters.filter(i => !i.createdInDb)
+        return {
+            ...state,
+            characters: action.payload === 'All' ? state.characters : createdFilter
+        }
+
+      case ORDER:
+            const orderName = action.payload === 'A-Z' ?
+            state.characters.sort(function(a, b) {
+                if(a.name > b.name) {
+                    return 1;
+                }
+                if(b.name > a.name) {
+                    return -1;
+                }
+                return 0;
+            }) :
+            state.characters.sort(function(a, b) {
+                if(a.name > b.name) {
+                    return -1;
+                }
+                if(b.name > a.name) {
+                    return 1;
+                }
+                return 0;
+            });
+            return {
+                ...state,
+                characters: orderName
+            }
+
+
+
+    case CLEAR_PAGE:
       return {
         ...state,
-        filteredCharacters: action.payload === 'all' ? allCharacters : originFilterCharacters
+        details: undefined,
       };
 
     default:

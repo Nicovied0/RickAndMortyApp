@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters } from "../redux/actions/actions";
+import { getCharacters, byOrder, byCreated } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Nav from "./Nav";
@@ -10,6 +10,7 @@ import style from "./Styles/Home.module.css";
 const Home = () => {
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => state.characters);
+  const [order, setOrder] = useState("");
 
   useEffect(() => {
     dispatch(getCharacters());
@@ -51,14 +52,28 @@ const Home = () => {
 
   //reder to paginations
   const renderPages = pages.map((page) => (
-    <li key={page}>
-      <div>
-        <button onClick={(e) => pagination(e, page)}>{page}</button>
+    <li key={page} style={{ display: "flex", margin: "0.2rem" }}>
+      <div >
+        <button
+          onClick={(e) => pagination(e, page)}
+          style={{width:"1.5rem",padding:"0.2rem", backgroundColor: "#414040",color:'#fff' }}
+        >
+          {page}
+        </button>
       </div>
     </li>
   ));
 
+  function handleOrder(e) {
+    e.preventDefault();
+    dispatch(byOrder(e.target.value));
+    setCurrentPage(1);
+    setOrder(`Ordenado ${e.target.value}`);
+  }
 
+  function handleCreated(e) {
+    dispatch(byCreated(e.target.value));
+  }
 
   console.log(allCharacters.length);
   if (!allCharacters) {
@@ -68,10 +83,26 @@ const Home = () => {
     return (
       <div>
         <Nav />
-        <div>
-          <ul style={{ display: "flex", padding: "1rem", width: "3rem" }}>
-            {renderPages}
-          </ul>
+        {/* order */}
+        <div className="orders" style={{display:"flex",alignItems:"center", justifyContent:"center",flexWrap:"wrap"}}>
+          <div className="FILTERS">
+            <select onChange={(e) => handleOrder(e)}>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
+            </select>
+            <select onChange={(e) => handleCreated(e)}>
+              <option value="All">All</option>
+              <option value="Created">Created </option>
+              <option value="api">Api</option>
+            </select>
+          </div>
+
+          <div className="paginations" style={{display:"flex",alignItems:"center", justifyContent:"center",flexWrap:"wrap"}}>
+            {/* pagination */}
+            <ul style={{ display:"flex",alignItems:"center", justifyContent:"center",flexWrap:"wrap"}}>
+              {renderPages}
+            </ul>
+          </div>
         </div>
         <div className={style.container}>
           {currentPageItems?.map((e) => {

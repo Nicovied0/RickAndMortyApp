@@ -2,7 +2,9 @@ import axios from 'axios';
 export const GET_CHARACTER = 'GET_CHARACTER';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_BY_NAME = 'GET_BY_NAME';
-export const FILTER_ORIGIN = 'FILTER_ORIGIN';
+export const BYCREATED = 'BYCREATED';
+export const CLEAR_PAGE = 'CLEAR_PAGE';
+export const ORDER = 'ORDER';
 // export const GET_CHARACTER_DETAIL = "GET_CHARACTER_DETAIL";
 
 
@@ -30,6 +32,7 @@ export function getDetails(id) {
     }
 
   };
+  
 };
 
 export function getByName(payload) {
@@ -46,10 +49,22 @@ export function getByName(payload) {
   }
 };
 
-export function filterOrigin(payload){
-  //console.log(payload); // all , created , api
+export function byCreated(payload) {
   return {
-    type: FILTER_ORIGIN,
-    payload,
+      type: BYCREATED,
+      payload
+  };
+};
+
+export function byOrder(payload) {
+  return {
+      type: ORDER,
+      payload
+  }
+}
+
+export const clearPage = () => {
+  return {
+    type: CLEAR_PAGE,
   };
 };

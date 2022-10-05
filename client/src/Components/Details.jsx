@@ -4,6 +4,7 @@ import { getDetails } from "../redux/actions/actions";
 import style from "./Styles/Detail.module.css";
 
 function Details(props) {
+  console.log('soy props',props)
   const [loading, setLoading] = useState(false);
   const details = useSelector((i) => i.details);
   const dispatch = useDispatch();
