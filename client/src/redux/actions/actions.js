@@ -2,9 +2,11 @@ import axios from 'axios';
 export const GET_CHARACTER = 'GET_CHARACTER';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_BY_NAME = 'GET_BY_NAME';
+export const GET_EPISODES = 'GET_EPISODES';
 export const BYCREATED = 'BYCREATED';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
 export const ORDER = 'ORDER';
+export const POST = 'POST';
 // export const GET_CHARACTER_DETAIL = "GET_CHARACTER_DETAIL";
 
 
@@ -49,6 +51,16 @@ export function getByName(payload) {
   }
 };
 
+export function getEpisodes() {
+  return async function(dispatch) {
+      const res = await axios.get('localhost:3001/episodes')
+      return dispatch({
+          type: GET_EPISODES,
+          payload: res.data
+      });
+  };
+};
+
 export function byCreated(payload) {
   return {
       type: BYCREATED,
@@ -63,6 +75,15 @@ export function byOrder(payload) {
   }
 }
 
+export function postCharacter(payload) {
+  return async function(dispatch) {
+      const res = await axios.post('http://localhost:3001/character', payload)
+      return {
+          type: POST,
+          res
+      }
+  };
+};
 export const clearPage = () => {
   return {
     type: CLEAR_PAGE,

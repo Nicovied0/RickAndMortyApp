@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCharacters, byOrder, byCreated } from "../redux/actions/actions";
+import { getCharacters, byOrder } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Nav from "./Nav";
@@ -71,15 +71,16 @@ const Home = () => {
     setOrder(`Ordenado ${e.target.value}`);
   }
 
-  function handleCreated(e) {
-    dispatch(byCreated(e.target.value));
-  }
+  // function handleCreated(e) {
+  //   dispatch(byCreated(e.target.value));
+  //   {console.log(e.target.value)}
+  // }
 
   console.log(allCharacters.length);
   if (!allCharacters) {
     return <div className={style.container}>Error</div>;
   } else if (allCharacters.length) {
-    console.log(currentPageItems);
+    // console.log(currentPageItems);
     return (
       <div>
         <Nav />
@@ -90,11 +91,12 @@ const Home = () => {
               <option value="A-Z">A-Z</option>
               <option value="Z-A">Z-A</option>
             </select>
-            <select onChange={(e) => handleCreated(e)}>
+            {/* <select onChange={(e) => handleCreated(e)}>
               <option value="All">All</option>
               <option value="Created">Created </option>
               <option value="api">Api</option>
-            </select>
+            </select> */}
+            
           </div>
 
           <div className="paginations" style={{display:"flex",alignItems:"center", justifyContent:"center",flexWrap:"wrap"}}>

@@ -34,32 +34,33 @@ router.get('/', async( req, res)=>{
 //  })
 
 
-router.post("/", async (req, res, next) => {
-    const { name, species, origin, image, episode } = req.body;
+// router.post("/", async (req, res, next) => {
+//     const { name, species, origin, image, episode } = req.body;
   
-    const newCharacter = await Character.create({
-      name,
-      species,
-      origin,
-      image
-    });
+//     const newCharacter = await Character.create({
+//       name,
+//       species,
+//       origin,
+//       image,
+//       episode
+//     });
   
     /* newCharacter.addEpisode(episodes); */
   
-    const episodeDb = await Episode.findAll({
-      where: { name: episode }, // or episode?
-    });
-    newCharacter.addEpisode(episodeDb);
+  //   const episodeDb = await Episode.findAll({
+  //     where: { name: episode }, // or episode?
+  //   });
+  //   newCharacter.addEpisode(episodeDb);
   
-    /* hasta aca */
+  //   /* hasta aca */
   
-    newCharacter
-      ? res.status(201).send(newCharacter)
-      : res.status(404).send("Error al crear el personaje");
+  //   newCharacter
+  //     ? res.status(201).send(newCharacter)
+  //     : res.status(404).send("Error al crear el personaje");
   
-    return newCharacter;
-  });
+  //   return newCharacter;
+  // });
   
 
 
-module.exports = router
+// module.exports = router
